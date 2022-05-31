@@ -9,6 +9,7 @@
 *.mk
 *.project
 Debug/
+compile_flags.txt
 
 # OS generated files #
 ######################
