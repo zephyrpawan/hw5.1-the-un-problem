@@ -25,14 +25,14 @@ In this case, the name would be “Ian,” who speaks “Italian” and understa
 Print a line of output giving the size of the smallest set of members S that should be asked to leave so that all remaining pairs of members can converse.
 
 ## Sample Run
-    Sample Input 2 <br/>
-    6<br/>
-    Fran French Italian<br/>
-    Enid English German<br/>
-    George German Italian<br/>
-    Ian Italian French Spanish<br/>
-    Spencer Spanish Portuguese<br/>
-    Polly Portuguese Spanish<br/>
+    Sample Input 2
+    6
+    Fran French Italian
+    Enid English German
+    George German Italian
+    Ian Italian French Spanish
+    Spencer Spanish Portuguese
+    Polly Portuguese Spanish
 
     Sample output 2
 
