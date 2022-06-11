@@ -9,7 +9,10 @@
 *.mk
 *.project
 Debug/
+.vscode/
 compile_flags.txt
+main
+Member
 
 # OS generated files #
 ######################
