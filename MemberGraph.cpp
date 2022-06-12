@@ -43,9 +43,3 @@ void MemberGraph::DFS(Member member)
 
     DFSTraverse(member, visited);
 }
-
-int MemberGraph::findSCCKosaraju() {
-    int sccCount = 0;
-
-    return sccCount;
-}
