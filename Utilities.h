@@ -22,6 +22,7 @@ public:
     static void printMemberVector(vector<Member> vec);
     static int readInputFile(vector<Member> *memberVector, string inputFile);
     static void createMemberGraph(vector<Member> *memberVector, MemberGraph *UNMemberGraph);
+    static void exitIfBadInputFile( int numberOfMembers, int membersWithDetails);
 };
 
 #endif

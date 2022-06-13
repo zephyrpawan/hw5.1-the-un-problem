@@ -94,8 +94,21 @@ void Utilities::createMemberGraph(vector<Member> *memberVector, MemberGraph *UNM
                 ((*memberVector)[j].getUnderstands().count((*memberVector)[i].getSpeaks()) == 1))
             {
                 (*UNMemberGraph).addEdge((*memberVector)[i], (*memberVector)[j]);
-                // cout << memberVector[j].getName() << " understands " << memberVector[i].getName() << endl;
+                // cout << (*memberVector)[j].getName() << " understands " << (*memberVector)[i].getName() << endl;
             }
         }
+    }
+}
+
+void Utilities::exitIfBadInputFile(int numberOfMembers, int membersWithDetails)
+{
+    if (numberOfMembers != membersWithDetails)
+    {
+        cout << "Input file says there are " << numberOfMembers << " members in line 1, but it contains";
+        cout << " details of " << membersWithDetails << " members." << endl;
+        cout << "Please correct the inputfile.txt and rerun the program!" << endl;
+        cout << "Terminating program. Exit code: -1" << endl
+             << endl;
+        exit(-1);
     }
 }
