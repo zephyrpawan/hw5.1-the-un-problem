@@ -15,6 +15,16 @@ using namespace std;
 
 int main(int argc, char const *argv[])
 {
+    // Initialize a ofstream to outputfile [optional]
+    // For testing and debugging purposes details will be printed to output.txt
+    ofstream outputData;
+    outputData.open("output.txt");
+    if (!outputData)
+    {
+        cerr << "Unable to open file!" << endl;
+        exit(-1);
+    }
+
     // Initialize a member vector to hold all the members from each line in the input file
     vector<Member> memberVector;
 
@@ -24,22 +34,23 @@ int main(int argc, char const *argv[])
     // Check to make sure first line of input file contains correct number of members
     Utilities::exitIfBadInputFile(numberOfMembers, memberVector.size());
 
-    // Print member count and the list of members
-    // cout << "Number of UN Members in a meeting = " << numberOfMembers << endl;
-    // Utilities::printMemberVector(memberVector);
+    // Print member count and the list of members to outputfile.txt
+    outputData << "Number of UN Members in a meeting = " << numberOfMembers << endl;
+    Utilities::printMemberVector(memberVector, outputData);
+    outputData << endl;
 
     // Initialize a member graph
     MemberGraph UNMemberGraph(numberOfMembers, &memberVector);
 
     // Populate the member graph by adding directional edges
     // Edge member1 --> member2 will be added if member2 understands the language spoken by member1
-    Utilities::createMemberGraph(&memberVector, &UNMemberGraph);
+    Utilities::createMemberGraph(&memberVector, &UNMemberGraph, outputData);
 
     // Call findScc() on member graph to get vector of member vectors i.e stronglyConnectedMembersVec
     // Each vector in stronglyConnectedMembersVec contains members who can converse with each other
     vector<vector<Member>> stronglyConnectedMembersVec = UNMemberGraph.findSCC();
 
-    // cout << "List of memers who can all converse with each other: " << endl;
+    outputData << endl << "List of memers who can all converse with each other: " << endl;
 
     // Initialize the size of strongly connected members
     int maxSccMembersSize = 0;
@@ -51,16 +62,22 @@ int main(int argc, char const *argv[])
         {
             maxSccMembersSize = stronglyConnectedMembers.size();
         }
-        // Utilities::printMemberVector(stronglyConnectedMembers);
+        // Print an edge member1-->member2 as "member2 understands member1" to the file output.txt
+        Utilities::printMemberVector(stronglyConnectedMembers, outputData);
+        
     }
 
-    // cout << "Maximum members who can all converse with each other: " << maxSccMembersSize << endl;
+    outputData << endl;
+    outputData << "Maximum number of members who can all converse with each other: " << maxSccMembersSize << endl;
+    outputData << endl;
 
     int membersRequiredToLeave = numberOfMembers - maxSccMembersSize;
 
-    // cout << "Minimum number of members required to leave = ";
+    outputData << "Minimum number of members required to leave = " << membersRequiredToLeave;
     cout << membersRequiredToLeave;
-    cout << endl << endl;
+    cout << endl;
+
+    outputData.close();
 
     return 0;
 }

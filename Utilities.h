@@ -19,9 +19,9 @@ class Utilities
 {
 public:
     static void printVector(vector<string> vec);
-    static void printMemberVector(vector<Member> vec);
+    static void printMemberVector(vector<Member> vec, ofstream &outputdata);
     static int readInputFile(vector<Member> *memberVector, string inputFile);
-    static void createMemberGraph(vector<Member> *memberVector, MemberGraph *UNMemberGraph);
+    static void createMemberGraph(vector<Member> *memberVector, MemberGraph *UNMemberGraph, ofstream &outputdata);
     static void exitIfBadInputFile( int numberOfMembers, int membersWithDetails);
 };
 
