@@ -69,7 +69,7 @@ int main(int argc, char const *argv[])
     // Initialize a member vector to hold all the members from each line in the input file
     vector<Member> memberVector;
 
-    // Read inputfile to populate memberVector and set number of members
+    // Read inputfile to populate memberVector and find number of members
     int numberOfMembers = Utilities::readInputFile(&memberVector, "input.txt");
 
     // Check to make sure first line of inputfile contains correct number of members before proceeding
