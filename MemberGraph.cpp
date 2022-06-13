@@ -25,7 +25,6 @@ void MemberGraph::DFS1ToFillStack(Member member, bool visited[], stack<Member> &
 
     for (auto itr = adjMemberList[member.getId()].begin(); itr != adjMemberList[member.getId()].end(); itr++)
     {
-        cout<<"member selected in dfs1" << (*itr).getName()<< endl;
         if (!visited[(*itr).getId()])
         {
             DFS1ToFillStack(*itr, visited, memberStack);
@@ -69,11 +68,12 @@ vector<vector<Member>> MemberGraph::findSCC()
     }
 
     // first DFS to put members in stack in reverse order of their finishing times
-    for (auto itr = (*adjMemberList).begin(); itr != (*adjMemberList).end(); itr++)
+    for (int i=0; i<(*memberVec).size(); i++)
     {
-        if (!visited[(*itr).getId()])
+
+        if (!visited[(*memberVec).at(i).getId()])
         {
-            DFS1ToFillStack((*itr), visited, memberStack);
+            DFS1ToFillStack((*memberVec).at(i), visited, memberStack);
         }
     }
 
