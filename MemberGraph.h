@@ -7,24 +7,32 @@
 #include <string>
 #include <vector>
 #include <list>
+#include <stack>
+#include <vector>
 
 #include "Member.h"
 
 using namespace std;
 
-class MemberGraph {
-    private:
-        //Number of members in the meeting
-        int members;
+class MemberGraph
+{
+private:
+    // Number of members in the meeting
+    int members;
 
-        //Adjacency list to represent member graph
-        list<Member> *adjMemberList;
+    // member vector with their names only
+    // vector<string> *memberNames;
 
-    public:
-        MemberGraph(int members);
-        void addEdge(Member mSpeaks, Member mUnderstands);
-        void DFSTraverse(Member member, bool visited[]);
-        void DFS(Member Member);
+    // Adjacency list to represent member graph and its reverse
+    list<Member> *adjMemberList;
+    list<Member> *adjMemberListReverse;
+
+public:
+    MemberGraph(int members);
+    void addEdge(Member mSpeaks, Member mUnderstands);
+    void DFS1ToFillStack(Member member, bool visited[], stack<Member> &memberStack);
+    void DFS2InReverse(Member member, bool visited[], vector<Member> *sccMembers);
+    vector<vector<Member>> findSCC();
 };
 
 #endif
