@@ -27,6 +27,13 @@
 
 using namespace std;
 
+
+//***************************************************************************************************
+// description: Utilities class with static helper functions to read input file and print vectors   *
+// return: none                                                                                     *
+// precondition: none                                                                               *
+// postcondition: Instantiates Utilities object / provides static functions that can be called      *
+//***************************************************************************************************
 class Utilities
 {
 public:

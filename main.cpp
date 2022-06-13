@@ -21,7 +21,7 @@
  *
  * Process:
  *       Input file stream is opened to read from input.txt
- *       vector<Member> is created with the details from input,txt
+ *       vector<Member> is created with the details from input.txt
  *       MemberGraph object is initialized with member data from vector<Member>
  *       Populate the member graph by adding directional edges
  *              Edge member1 --> member2 will be added if member2 understands the language spoken by member1
@@ -36,6 +36,7 @@
  *
  * Assumptions:
  *      input.txt file is valid and is present in same path and named correctly
+ *      program is able to open and write logs to file output.txt
  *      Members can understand themselves
  */
 
