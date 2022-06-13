@@ -11,6 +11,7 @@
 #include <set>
 
 #include "Member.h"
+#include "MemberGraph.h"
 
 using namespace std;
 
@@ -20,6 +21,7 @@ public:
     static void printVector(vector<string> vec);
     static void printMemberVector(vector<Member> vec);
     static int readInputFile(vector<Member> *memberVector, string inputFile);
+    static void createMemberGraph(vector<Member> *memberVector, MemberGraph *UNMemberGraph);
 };
 
 #endif

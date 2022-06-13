@@ -15,28 +15,23 @@ using namespace std;
 
 int main(int argc, char const *argv[])
 {
+    // Initialize a member vector to hold all the members from each line in the input file
     vector<Member> memberVector;
+
+    // Read inputfile to populate memberVector and set number of members
     int numberOfMembers = Utilities::readInputFile(&memberVector, "input.txt");
-    
+
+    // Print member count and the list of members
     cout << "Number of UN Members in a meeting = " << numberOfMembers << endl;
     Utilities::printMemberVector(memberVector);
 
+    // Initialize a member graph
     MemberGraph UNMemberGraph(numberOfMembers, &memberVector);
 
-    for (int i = 0; i < memberVector.size(); i++)
-    {
-        for (int j = 0; j < memberVector.size(); j++)
-        {
+    // Populate the membergraph by adding direction edges
+    // Edge member1 --> member2 will be added if member2 understands the language spoken by member1
+    Utilities::createMemberGraph(&memberVector, &UNMemberGraph);
 
-            if ((memberVector[i].getSpeaks() == memberVector[j].getSpeaks()) ||
-                (memberVector[j].getUnderstands().count(memberVector[i].getSpeaks()) == 1))
-            {
-                UNMemberGraph.addEdge(memberVector[i], memberVector[j]);
-                cout << memberVector[j].getName() << " understands " << memberVector[i].getName() << endl;
-            }
-        }
-    }
-    cout << endl;
     cout << "List of memers who can all converse with each other: " << endl;
 
     vector<vector<Member>> sccUNVecs = UNMemberGraph.findSCC();

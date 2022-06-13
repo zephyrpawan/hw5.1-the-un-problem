@@ -24,12 +24,12 @@ void Utilities::printMemberVector(vector<Member> vec)
     {
         if (i == vec.size() - 1)
         {
-            cout << vec[i].getId() << "_" << vec[i].getName();
+            cout << vec[i].getName();
             // cout << vec[i].toString();
         }
         else
         {
-            cout << vec[i].getId() << "_" << vec[i].getName() << ", ";
+            cout << vec[i].getName() << ", ";
             // cout << vec[i].toString() << ", ";
         }
     }
@@ -82,4 +82,20 @@ int Utilities::readInputFile(vector<Member> *memberVector, string inputFileName)
     }
 
     return numberOfMembers;
+}
+
+void Utilities::createMemberGraph(vector<Member> *memberVector, MemberGraph *UNMemberGraph)
+{
+    for (int i = 0; i < (*memberVector).size(); i++)
+    {
+        for (int j = 0; j < (*memberVector).size(); j++)
+        {
+            if (((*memberVector)[i].getSpeaks() == (*memberVector)[j].getSpeaks()) ||
+                ((*memberVector)[j].getUnderstands().count((*memberVector)[i].getSpeaks()) == 1))
+            {
+                (*UNMemberGraph).addEdge((*memberVector)[i], (*memberVector)[j]);
+                // cout << memberVector[j].getName() << " understands " << memberVector[i].getName() << endl;
+            }
+        }
+    }
 }
