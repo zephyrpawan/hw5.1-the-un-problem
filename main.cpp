@@ -8,11 +8,9 @@
 
 #include "Member.h"
 #include "MemberGraph.h"
+#include "Utilities.h"
 
 using namespace std;
-
-void printMemberVector(vector<Member> vec);
-void printVector(vector<string> vec);
 
 int main(int argc, char const *argv[])
 {
@@ -59,7 +57,7 @@ int main(int argc, char const *argv[])
         cout << "Please make sure inputfile.txt exists in the source folder and try again!" << endl;
     }
     cout << "Number of UN Members in a meeting = " << numberOfMembers << endl;
-    printMemberVector(memberVector);
+    Utilities::printMemberVector(memberVector);
 
     MemberGraph UNMemberGraph(numberOfMembers, &memberVector);
 
@@ -89,7 +87,7 @@ int main(int argc, char const *argv[])
         {
             maxSccUNSize = memUNVec.size();
         }
-        printMemberVector(memUNVec);
+        Utilities::printMemberVector(memUNVec);
     }
 
     cout << endl
@@ -100,38 +98,3 @@ int main(int argc, char const *argv[])
     return 0;
 }
 
-void printMemberVector(vector<Member> vec)
-{
-    cout << "{";
-    for (int i = 0; i < vec.size(); i++)
-    {
-        if (i == vec.size() - 1)
-        {
-            cout << vec[i].getId() << "_" << vec[i].getName();
-            // cout << vec[i].toString();
-        }
-        else
-        {
-            cout << vec[i].getId() << "_" << vec[i].getName() << ", ";
-            // cout << vec[i].toString() << ", ";
-        }
-    }
-    cout << "}" << endl
-         << endl;
-}
-void printVector(vector<string> vec)
-{
-    cout << "{";
-    for (int i = 0; i < vec.size(); i++)
-    {
-        if (i == vec.size() - 1)
-        {
-            cout << vec[i];
-        }
-        else
-        {
-            cout << vec[i] << ", ";
-        }
-    }
-    cout << "}" << endl;
-}
