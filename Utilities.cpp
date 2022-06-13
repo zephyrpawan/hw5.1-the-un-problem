@@ -1,3 +1,15 @@
+/*
+ * Author: Pawan Bhandari
+ * Assignment Title: Homework 5.1: The UN Problem
+ * Assignment Description: Applies the Kosaraju's Algorith to find strongly connceted components 
+ *                         for solving the UN Problem
+ * Due Date: 06/06/2022
+ * Date Created: 06/06/2022
+ * Date Last Modified:06/13/2022
+ */
+
+// Uses C++-2011 standard
+
 #include "Utilities.h"
 
 void Utilities::printVector(vector<string> vec)
