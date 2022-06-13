@@ -43,7 +43,7 @@ void MemberGraph::DFS2InReverse(Member member, bool visited[], vector<Member> *s
 
     // mark the current member node as visited
     visited[member.getId()] = true;
-    cout << member.getName() << " ";
+   // cout << member.getName() << " ";
     (*sccMembers).push_back(member);
 
     // move to the next member node and recurse for all unvisited  members
@@ -93,7 +93,6 @@ vector<vector<Member>> MemberGraph::findSCC()
         if (!visited[m.getId()])
         {
             DFS2InReverse(m, visited, &scMembers);
-            cout << endl;
             scc.push_back(scMembers);
         }
     }

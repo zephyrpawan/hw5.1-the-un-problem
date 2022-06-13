@@ -7,6 +7,7 @@
 #include <string>
 #include <vector>
 #include <list>
+#include <set>
 
 using namespace std;
 
@@ -16,15 +17,20 @@ private:
     string name;
     int id;
     string speaks;
-    vector<string> understands;
+    set<string> understands;
 
 public:
-    Member(string name, int id, string speaks, vector<string> understands);
+    Member() = default;
+    Member(string name, int id, string speaks, set<string> understands);
     string getName();
-    string getSpeaks();
-    vector<string> getUnderstands();
-    string toString();
     int getId();
+    string getSpeaks();
+    set<string> getUnderstands();
+    void setName(string memberName);
+    void setid(int memberId);
+    void setSpeaks(string memberSpeaks);
+    void setUnderstands(set<string> memberUnderstands);
+    string toString();
 };
 
 #endif
