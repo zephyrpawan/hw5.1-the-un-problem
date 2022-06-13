@@ -12,6 +12,16 @@
 
 #include "Member.h"
 
+//*************************************************************************************
+// description: Implementation of Custom Member class for creating Member objects     *
+// return: Creates Member object with member variables and their getters & setters    *
+// precondition: name, id and languages spoken & understood                           *
+//              String name (name of the member)                                      *  
+//              int id (member id)                                                    *
+//              string speaks (languaage spoken by member)                            *
+//              set<string> understands (langiage member understands)                 *
+// postcondition: Instantiates Member object                                          *
+//*************************************************************************************
 Member::Member(string name, int id, string speaks, set<string> understands)
 {
     this->name = name;

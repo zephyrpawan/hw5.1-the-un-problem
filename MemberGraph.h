@@ -27,6 +27,12 @@
 
 using namespace std;
 
+//***************************************************************************************************
+// description: Custom MemberGraph class for creating MemberGraph objects                           *
+// return: Creates MemberGraph object and provides methods for implementation Kosaraju's Algorithm  *
+// precondition: member vector (memberVec), and adjacency list representation of member graph       *
+// postcondition: Instantiates MemberGraph object                                                   *
+//***************************************************************************************************
 class MemberGraph
 {
 private:
