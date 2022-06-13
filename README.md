@@ -37,5 +37,3 @@ Print a line of output giving the size of the smallest set of members S that sho
     Sample output 2
 
     4
-
-
