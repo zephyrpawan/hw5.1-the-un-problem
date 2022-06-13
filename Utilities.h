@@ -19,6 +19,7 @@ class Utilities
 public:
     static void printVector(vector<string> vec);
     static void printMemberVector(vector<Member> vec);
+    static int readInputFile(vector<Member> *memberVector, string inputFile);
 };
 
 #endif
