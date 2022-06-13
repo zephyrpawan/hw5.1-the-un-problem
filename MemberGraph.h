@@ -19,6 +19,7 @@ class MemberGraph
 private:
     // Number of members in the meeting
     int members;
+    vector<Member> *memberVec;
 
     // member vector with their names only
     // vector<string> *memberNames;
@@ -28,7 +29,7 @@ private:
     list<Member> *adjMemberListReverse;
 
 public:
-    MemberGraph(int members);
+    MemberGraph(int members, vector<Member> *memberVec);
     void addEdge(Member mSpeaks, Member mUnderstands);
     void DFS1ToFillStack(Member member, bool visited[], stack<Member> &memberStack);
     void DFS2InReverse(Member member, bool visited[], vector<Member> *sccMembers);

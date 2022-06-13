@@ -1,8 +1,9 @@
 #include "MemberGraph.h"
 
-MemberGraph::MemberGraph(int members)
+MemberGraph::MemberGraph(int members, vector<Member> *memberVec)
 {
     this->members = members;
+    this->memberVec = memberVec;
     adjMemberList = new list<Member>[members];
     adjMemberListReverse = new list<Member>[members];
 }
@@ -12,15 +13,19 @@ void MemberGraph::addEdge(Member mSpeaks, Member mUnderstands)
     adjMemberList[mSpeaks.getId()].push_back(mUnderstands);
     adjMemberListReverse[mUnderstands.getId()].push_back(mSpeaks);
 
-    cout << mSpeaks.getName() << " Speaks " << mSpeaks.getSpeaks() << " and " << mUnderstands.getName() << " understands " << mSpeaks.getSpeaks() << endl;
+    //cout << mSpeaks.getName() << " Speaks " << mSpeaks.getSpeaks() << " and " << mUnderstands.getName() << " understands " << mSpeaks.getSpeaks() << endl;
 }
 
 void MemberGraph::DFS1ToFillStack(Member member, bool visited[], stack<Member> &memberStack)
 {
+    if(visited[member.getId()]){
+        return;
+    }
     visited[member.getId()] = true;
 
     for (auto itr = adjMemberList[member.getId()].begin(); itr != adjMemberList[member.getId()].end(); itr++)
     {
+        cout<<"member selected in dfs1" << (*itr).getName()<< endl;
         if (!visited[(*itr).getId()])
         {
             DFS1ToFillStack(*itr, visited, memberStack);

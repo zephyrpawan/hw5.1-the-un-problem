@@ -14,12 +14,14 @@ void printVector(vector<Member> vec);
 
 int main(int argc, char const *argv[])
 {
-    Member M0("M0", 0, "French", vector<string>{"Italian"});
-    Member M1("M1", 1, "English", vector<string>{"German"});
-    Member M2("M2", 2, "German", vector<string>{"Italian"});
-    Member M3("M3", 3, "Italian", vector<string>{"French", "Spanish"});
-    Member M4("M4", 4, "Spanish", vector<string>{"Portuguese"});
-    // Member Polly("Polly", 5, "Portuguese", vector<string>{"Spanish"});
+    Member Fran("Fran", 0, "French", vector<string>{"Italian"});
+    Member Enid("Enid", 1, "English", vector<string>{"German"});
+    Member George("George", 2, "German", vector<string>{"Italian"});
+    Member Ian("Ian", 3, "Italian", vector<string>{"French", "Spanish"});
+    Member Spencer("Spencer", 4, "Spanish", vector<string>{"Portuguese"});
+    Member Polly("Polly", 5, "Portuguese", vector<string>{"Spanish"});
+
+    vector<Member> memberVector{Fran, Enid, George, Ian, Spencer, Polly};
 
     // cout << Fran.toString() << endl;
     // cout << Enid.toString() << endl;
@@ -29,15 +31,21 @@ int main(int argc, char const *argv[])
     // cout << Polly.toString() << endl;
     // cout << endl;
 
-    MemberGraph memG(5);
-    memG.addEdge(M1, M0);
-    memG.addEdge(M0, M2);
-    memG.addEdge(M2, M1);
-    memG.addEdge(M0, M3);
-    memG.addEdge(M3, M4);
-    memG.addEdge(M3, M3);
-    memG.addEdge(M4, M4);
-    // memG.addEdge(Ian, Ian);
+
+    MemberGraph memG(6, &memberVector);
+    memG.addEdge(Fran, Fran);
+    memG.addEdge(Enid, Enid);
+    memG.addEdge(George, George);
+    memG.addEdge(Ian, Ian);
+    memG.addEdge(Spencer, Spencer);
+    memG.addEdge(Polly, Polly);
+
+    memG.addEdge(Fran, Ian);
+    memG.addEdge(Ian, Fran);
+    memG.addEdge(George, Enid);
+    memG.addEdge(Spencer, Polly);
+    memG.addEdge(Polly, Spencer);
+
     cout << endl;
 
     cout << "List of memers who can all converse with each other: " << endl;
