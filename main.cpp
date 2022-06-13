@@ -16,50 +16,6 @@ void printVector(vector<string> vec);
 
 int main(int argc, char const *argv[])
 {
-    Member Fran("Fran", 0, "French", set<string>{"Italian"});
-    Member Enid("Enid", 1, "English", set<string>{"German"});
-    Member George("George", 2, "German", set<string>{"Italian"});
-    Member Ian("Ian", 3, "Italian", set<string>{"French", "Spanish"});
-    Member Spencer("Spencer", 4, "Spanish", set<string>{"Portuguese"});
-    Member Polly("Polly", 5, "Portuguese", set<string>{"Spanish"});
-    vector<Member> memberVec{Fran, Enid, George, Ian, Spencer, Polly};
-
-    MemberGraph memG(6, &memberVec);
-    memG.addEdge(Fran, Fran);
-    memG.addEdge(Enid, Enid);
-    memG.addEdge(George, George);
-    memG.addEdge(Ian, Ian);
-    memG.addEdge(Spencer, Spencer);
-    memG.addEdge(Polly, Polly);
-
-    memG.addEdge(Fran, Ian);
-    memG.addEdge(Ian, Fran);
-    memG.addEdge(George, Enid);
-    memG.addEdge(Spencer, Polly);
-    memG.addEdge(Polly, Spencer);
-
-    cout << endl;
-    cout << "List of memers who can all converse with each other: " << endl;
-
-    vector<vector<Member>> sccVecs = memG.findSCC();
-
-    int maxSccSize = 0;
-
-    for (vector<Member> &memVec : sccVecs)
-    {
-        if (memVec.size() > maxSccSize)
-        {
-            maxSccSize = memVec.size();
-        }
-        printMemberVector(memVec);
-    }
-
-    cout << endl
-         << "Maximum members who can all converse with each other: " << maxSccSize << endl
-         << endl;
-
-    // End of manual processing
-
     // Process input file
     int numberOfMembers = 0;
     vector<Member> memberVector;
@@ -76,7 +32,6 @@ int main(int argc, char const *argv[])
             if (lineNumber == -1)
             {
                 numberOfMembers = stoi(line);
-                cout << "number of Members = " << numberOfMembers << endl;
             }
 
             if (lineNumber >= 0)
@@ -103,18 +58,45 @@ int main(int argc, char const *argv[])
         cout << "Unable to open inputfile.txt" << endl;
         cout << "Please make sure inputfile.txt exists in the source folder and try again!" << endl;
     }
+    cout << "Number of UN Members in a meeting = " << numberOfMembers << endl;
     printMemberVector(memberVector);
 
     MemberGraph UNMemberGraph(numberOfMembers, &memberVector);
 
-    // for (int i = 0; i< memberVector.size(); i++) {
-    //     for(int j=0; j<memberVector.size(); i++) {
-    //         //if()
-    //     }
-    // }
+    for (int i = 0; i < memberVector.size(); i++)
+    {
+        for (int j = 0; j < memberVector.size(); j++)
+        {
 
-    
-    
+            if ((memberVector[i].getSpeaks() == memberVector[j].getSpeaks()) ||
+                (memberVector[j].getUnderstands().count(memberVector[i].getSpeaks()) == 1))
+            {
+                UNMemberGraph.addEdge(memberVector[i], memberVector[j]);
+                cout << memberVector[j].getName() << " understands " << memberVector[i].getName() << endl;
+            }
+        }
+    }
+    cout << endl;
+    cout << "List of memers who can all converse with each other: " << endl;
+
+    vector<vector<Member>> sccUNVecs = UNMemberGraph.findSCC();
+
+    int maxSccUNSize = 0;
+
+    for (vector<Member> &memUNVec : sccUNVecs)
+    {
+        if (memUNVec.size() > maxSccUNSize)
+        {
+            maxSccUNSize = memUNVec.size();
+        }
+        printMemberVector(memUNVec);
+    }
+
+    cout << endl
+         << "Maximum members who can all converse with each other: " << maxSccUNSize << endl
+         << endl;
+    // End of file processing
+
     return 0;
 }
 
@@ -125,13 +107,13 @@ void printMemberVector(vector<Member> vec)
     {
         if (i == vec.size() - 1)
         {
-            //cout << vec[i].getId() << "_" << vec[i].getName();
-            cout << vec[i].toString();
+            cout << vec[i].getId() << "_" << vec[i].getName();
+            // cout << vec[i].toString();
         }
         else
         {
-            //cout << vec[i].getId() << "_" << vec[i].getName() << ", ";
-            cout << vec[i].toString() << ", ";
+            cout << vec[i].getId() << "_" << vec[i].getName() << ", ";
+            // cout << vec[i].toString() << ", ";
         }
     }
     cout << "}" << endl
